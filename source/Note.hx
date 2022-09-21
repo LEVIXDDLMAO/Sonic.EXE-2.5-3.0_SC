@@ -156,7 +156,7 @@ class Note extends FlxSprite
 			mania = 4;
 		}
 
-		if (isRing || mania == 5)
+		if (mania == 5)
 		{
 			swagWidth = 140 * 0.8;
 		}
