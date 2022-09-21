@@ -261,6 +261,10 @@ class PlayState extends MusicBeatState
 	// Less laggy controls
 	private var keysArray:Array<Dynamic>;
 
+	var daNoteStatic:FlxSprite = new FlxSprite(0, 0);
+
+	var heatlhDrop:Float = 0;
+
 	override public function create()
 	{
 		#if MODS_ALLOWED
@@ -269,6 +273,12 @@ class PlayState extends MusicBeatState
 
 		// for lua
 		instance = this;
+
+		daNoteStatic.frames = Paths.getSparrowAtlas('hitStatic');
+		daNoteStatic.animation.addByPrefix('static', 'staticANIMATION', 24, false);
+		daNoteStatic.animation.play('static');
+
+		remove(daNoteStatic);		
 
 		debugKeysChart = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
 		debugKeysCharacter = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_2'));
@@ -1140,6 +1150,41 @@ class PlayState extends MusicBeatState
 		callOnLuas('onCreatePost', []);
 		
 		super.create();
+	}
+
+	function staticHitMiss()
+	{
+		trace('lol you missed the static note!');
+		daNoteStatic = new FlxSprite(0, 0);
+		daNoteStatic.frames = Paths.getSparrowAtlas('hitStatic');
+
+		daNoteStatic.setGraphicSize(FlxG.width, FlxG.height);
+
+		daNoteStatic.screenCenter();
+
+		daNoteStatic.cameras = [camHUD2];
+
+		daNoteStatic.animation.addByPrefix('static', 'staticANIMATION', 24, false);
+
+		daNoteStatic.animation.play('static', true);
+
+		FlxG.camera.shake(0.0025, 0.10);
+
+		// new FlxTimer().start(0.8, function(tmr:FlxTimer)
+		// {
+		// 	shakeCam2 = false;
+		// });
+
+		FlxG.sound.play(Paths.sound("hitStatic1"));
+
+		add(daNoteStatic);
+
+		new FlxTimer().start(.38, function(trol:FlxTimer) // fixed lmao
+		{
+			daNoteStatic.alpha = 0;
+			trace('ended HITSTATICLAWL');
+			remove(daNoteStatic);
+		});
 	}
 
 	function set_songSpeed(value:Float):Float
@@ -3596,6 +3641,14 @@ class PlayState extends MusicBeatState
 		});
 		combo = 0;
 
+		if (daNote.noteType == 'Static Note'){
+			staticHitMiss();
+			new FlxTimer().start(.38, function(trol:FlxTimer) // fixed lmao
+			{
+				remove(daNoteStatic);
+			});
+		}
+
 		health -= daNote.missHealth * healthLoss;
 		if(instakillOnMiss)
 		{
@@ -3740,6 +3793,26 @@ class PlayState extends MusicBeatState
 							boyfriend.playAnim('hurt', true);
 							boyfriend.specialAnim = true;
 						}
+					case 'Phantom Note':
+					{
+						var fuckyou:Int = 0;
+						heatlhDrop += 0.00025;
+						if (heatlhDrop == 0.00025)
+						{
+							new FlxTimer().start(0.1, function(sex:FlxTimer)
+							{
+								fuckyou += 1;
+
+								if (fuckyou >= 100)
+									heatlhDrop = 0;
+
+								if (!paused && fuckyou < 100)
+									sex.reset();
+							});
+						}
+						else
+							fuckyou = 0;
+					}
 				}
 				
 				note.wasGoodHit = true;
