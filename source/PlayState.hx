@@ -1766,9 +1766,6 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		// trace(unspawnNotes.length);
-		// playerCounter += 1;
-
 		unspawnNotes.sort(sortByShit);
 		if(eventNotes.length > 1) { //No need to sort if there's a single one or none at all
 			eventNotes.sort(sortByTime);
