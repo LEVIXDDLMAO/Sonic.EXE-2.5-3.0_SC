@@ -1,0 +1,21 @@
+{
+	"songs": [
+		["Too-Slow", "pixel-bf", [165, 0, 77]],
+        ["You-cant-run", "ycr", [165, 0, 77]]
+	],
+
+	"weekCharacters": [
+		"",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "",
+	"weekBefore": "tutorial",
+	"weekName": "Tutorial",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}
