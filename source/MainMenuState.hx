@@ -70,7 +70,7 @@ class MainMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 4)), 0.1);
-		animatedBG:FlxSprite = new FlxSprite();
+		animatedBG = new FlxSprite();
 		animatedBG.frames = Paths.getSparrowAtlas(Paths.image('Main_Menu_Spritesheet_Animation'));
 		animatedBG.animation.addByPrefix('BG instance', 'Main_Menu_Spritesheet_Animation', 24, true);
 		animatedBG.scrollFactor.set(0, yScroll);
