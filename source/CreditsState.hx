@@ -66,14 +66,6 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
-			["Special thanks"],
-			['Sonic.EXE Team',   'sonicEXEteam',         "The best mod team Im sorry you had to cancel this ( Fly high divide )", 'https://www.reddit.com/r/FridayNightFunkin/', '0000FF'],
-			[''],
-			["Sonic.EXE Psych SC 2.5/3.0"],
-			['LeviXDD', 'levixd', "html porter and coder",    'https://github.com/LEVIXDDLMAO',  'C30085'],
-			['MemeHoovy',           'memehoovy',        "Coder",                                      'https://twitter.com/meme_hoovy',      'C30085'],
-			['BushTrain460615', 'bushtrain', "MacOS porter and coder", 'https://github.com/BushTrain460615', 'C30085']
-			[''],
 			['Psych Engine Team'],
 			['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',						'https://twitter.com/Shadow_Mario_',	'FFDD33'],
 			['RiverOaken',			'riveroaken',		'Main Artist/Animator of Psych Engine',					'https://twitter.com/river_oaken',		'C30085'],
@@ -98,7 +90,7 @@ class CreditsState extends MusicBeatState
 			["Sonic.EXE SC Makers!"],
 			['LeviXDD', 'leviXD', "Html port and coder!", 'https://github.com/LEVIXDDLMAO', 'C30085'],
 			['MemeHoovy',           'memehoovy',        "A smart person<3",                                      'https://twitter.com/meme_hoovy',      'C30085'],
-			['BushTrain', bushtrain', 'A good coder! I love your work!!', 'https://github.com/BushTrain460615', 'C30085']
+			['BushTrain', 'bushtrain', 'A good coder! I love your work!!', 'https://github.com/BushTrain460615', 'C30085']
 		];
 		
 		for(i in pisspoop){
