@@ -18,4 +18,6 @@ leviXD - HTML ported
 
 Memehoovy - Coder :D ( levis best friend )
 
+BushTrain460615 - Helper!! >:D
+
 Sonic.EXE team - The people who made this normal mod
