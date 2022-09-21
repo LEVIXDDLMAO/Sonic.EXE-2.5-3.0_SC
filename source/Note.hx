@@ -63,7 +63,7 @@ class Note extends FlxSprite
 	public var hitHealth:Float = 0.023;
 	public var missHealth:Float = 0.0475;
 
-	// public var isRing:Bool = PlayState.SONG.isRing;
+	public var isRing:Bool = PlayState.SONG.isRing;
 
 	public var texture(default, set):String = null;
 
