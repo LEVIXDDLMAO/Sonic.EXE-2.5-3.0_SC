@@ -67,10 +67,10 @@ class CreditsState extends MusicBeatState
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
 			["Sonic.EXE Team"],
-			['Sonic.EXE Team',   'sonic',         "The best mod team Im sorry you had to cancel this ( Fly high divide )", 'https://www.reddit.com/r/FridayNightFunkin/', '0000FF'],
+			['Sonic.EXE Team',   'Sonic',         "The best mod team Im sorry you had to cancel this ( Fly high divide )", 'https://www.reddit.com/r/FridayNightFunkin/', '0000FF'],
 			[''],
 			["Sonic.EXE SC Makers!"],
-			['LeviXDD', 'leviXD', "Html port and coder!", 'https://github.com/LEVIXDDLMAO', 'C30085'],
+			['LeviXDD', 'levixd', "Html port and coder!", 'https://github.com/LEVIXDDLMAO', 'C30085'],
 			['MemeHoovy',           'memehoovy',        "A smart person<3",                                      'https://twitter.com/meme_hoovy',      'C30085'],
 			['BushTrain', 'bushtrain', 'A good coder! I love your work!!', 'https://github.com/BushTrain460615', 'C30085']
 		];
