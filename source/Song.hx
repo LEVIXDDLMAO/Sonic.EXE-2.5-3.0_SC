@@ -27,12 +27,9 @@ typedef SwagSong =
 	var gfVersion:String;
 	var stage:String;
 
-	var mania:Null<Int>;
-
 	var arrowSkin:String;
 	var splashSkin:String;
 	var validScore:Bool;
-	var isRing:Bool;
 }
 
 class Song
@@ -81,14 +78,6 @@ class Song
 					else i++;
 				}
 			}
-		}
-        // borrowed your code tposejank
-		if (songJson.mania == null && !songJson.isRing) //yall better not replace this
-		{
-			songJson.mania = Note.defaultMania;
-		}
-		else if (songJson.isRing) { // who knows? maybe this will be needed
-			songJson.mania = 5;
 		}
 	}
 
@@ -152,7 +141,6 @@ class Song
 	{
 		var swagShit:SwagSong = cast Json.parse(rawJson).song;
 		swagShit.validScore = true;
-		// swagShit.isRing = false; // just in case this is needed
 		return swagShit;
 	}
 }

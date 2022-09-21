@@ -208,9 +208,7 @@ class ChartingState extends MusicBeatState
 				gfVersion: 'gf',
 				speed: 1,
 				stage: 'stage',
-				validScore: false,
-				isRing: false,
-				mania: 4
+				validScore: false
 			};
 			addSection();
 			PlayState.SONG = _song;
@@ -2611,9 +2609,7 @@ class ChartingState extends MusicBeatState
 			player3: null,
 			gfVersion: _song.gfVersion,
 			stage: _song.stage,
-			validScore: false,
-			isRing: false,
-			mania: 4			
+			validScore: false		
 		};
 		var json = {
 			"song": eventsSong
