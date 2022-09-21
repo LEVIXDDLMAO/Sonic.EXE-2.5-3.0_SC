@@ -77,6 +77,13 @@ class Note extends FlxSprite
 
 	public static var ammo:Array<Int> = [4, 5]; // only adding 5k
 
+	public static var keysShit:Map<Int, Map<String, Dynamic>> = [
+		4 => ["anims" => ["LEFT", "DOWN", "UP", "RIGHT"], "strumAnims" => ["LEFT", "DOWN", "UP", "RIGHT"], "pixelAnimIndex" => [0, 1, 2, 3]],
+
+		5 => ["anims" => ["LEFT", "DOWN", "UP", "UP", "RIGHT"],
+			 "strumAnims" => ["LEFT", "DOWN", "SPACE", "UP", "RIGHT"], "pixelAnimIndex" => [0, 1, 4, 2, 3]],
+	];
+
 	private function set_texture(value:String):String {
 		if(texture != value) {
 			reloadNote('', value);
@@ -87,9 +94,9 @@ class Note extends FlxSprite
 
 	private function set_noteType(value:String):String {
 		noteSplashTexture = PlayState.SONG.splashSkin;
-		colorSwap.hue = ClientPrefs.arrowHSV[noteData % Note.ammo[mania]][0] / 360;
-		colorSwap.saturation = ClientPrefs.arrowHSV[noteData % Note.ammo[mania]][1] / 100;
-		colorSwap.brightness = ClientPrefs.arrowHSV[noteData % Note.ammo[mania]][2] / 100;
+		colorSwap.hue = ClientPrefs.arrowHSV[Std.int(Note.keysShit.get(mania).get('pixelAnimIndex')[noteData] % Note.ammo[mania])][0] / 360;
+		colorSwap.saturation = ClientPrefs.arrowHSV[Std.int(Note.keysShit.get(mania).get('pixelAnimIndex')[noteData] % Note.ammo[mania])][1] / 100;
+		colorSwap.brightness = ClientPrefs.arrowHSV[Std.int(Note.keysShit.get(mania).get('pixelAnimIndex')[noteData] % Note.ammo[mania])][2] / 100;
 
 		if(noteData > -1 && noteType != value) {
 			switch(value) {
