@@ -11,10 +11,10 @@
 	],
 	"weekBackground": "stage",
 
-	"storyName": "",
-	"weekBefore": "tutorial",
-	"weekName": "Tutorial",
-	"startUnlocked": true,
+	"storyName": "sonicexeencore",
+	"weekBefore": "weekEXE",
+	"weekName": "Act 1 Encore",
+	"startUnlocked": false,
 
 	"hideStoryMode": false,
 	"hideFreeplay": false

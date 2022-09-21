@@ -12,9 +12,9 @@
 	],
 	"weekBackground": "stage",
 
-	"storyName": "",
-	"weekBefore": "tutorial",
-	"weekName": "Tutorial",
+	"storyName": "week-sonicnew",
+	"weekBefore": "weekEXE",
+	"weekName": "Act 1",
 	"startUnlocked": true,
 
 	"hideStoryMode": false,
