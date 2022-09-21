@@ -19,7 +19,3 @@ leviXD - HTML ported
 Memehoovy - Coder :D ( levis best friend )
 
 Sonic.EXE team - The people who made this normal mod
-
-# WARING
-triple trouble is fucking broken
-NOW EVERYTHING IS BROKEN WAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
