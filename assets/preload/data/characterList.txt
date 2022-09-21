@@ -1,9 +1,16 @@
 bf
 bf-encore
 bf-pixel-sonic
+bf-perspective-left
+bf-perspective-right
 gf
 gf-pixel-sonic
 sonicexe
 ycr
 ycr-mad
 pixelrunsonic
+BEAST-RIGHT
+BEAST
+eggdick
+knux
+tails
