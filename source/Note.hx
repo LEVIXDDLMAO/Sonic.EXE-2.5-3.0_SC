@@ -71,6 +71,12 @@ class Note extends FlxSprite
 	public var hitCausesMiss:Bool = false;
 	public var distance:Float = 2000;//plan on doing scroll directions soon -bb
 
+	public static var defaultMania:Int = 4;
+
+	public var mania:Int = 4;
+
+	public static var ammo:Array<Int> = [4, 5]; // only adding 5k
+
 	private function set_texture(value:String):String {
 		if(texture != value) {
 			reloadNote('', value);
@@ -81,9 +87,9 @@ class Note extends FlxSprite
 
 	private function set_noteType(value:String):String {
 		noteSplashTexture = PlayState.SONG.splashSkin;
-		colorSwap.hue = ClientPrefs.arrowHSV[noteData % 4][0] / 360;
-		colorSwap.saturation = ClientPrefs.arrowHSV[noteData % 4][1] / 100;
-		colorSwap.brightness = ClientPrefs.arrowHSV[noteData % 4][2] / 100;
+		colorSwap.hue = ClientPrefs.arrowHSV[noteData % Note.ammo[mania]][0] / 360;
+		colorSwap.saturation = ClientPrefs.arrowHSV[noteData % Note.ammo[mania]][1] / 100;
+		colorSwap.brightness = ClientPrefs.arrowHSV[noteData % Note.ammo[mania]][2] / 100;
 
 		if(noteData > -1 && noteType != value) {
 			switch(value) {
@@ -144,6 +150,17 @@ class Note extends FlxSprite
 		if (prevNote == null)
 			prevNote = this;
 
+		if (PlayState.SONG.isRing) {
+			mania = 5;
+		} else {
+			mania = 4;
+		}
+
+		if (isRing || mania == 5)
+		{
+			swagWidth = 140 * 0.8;
+		}
+
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
 		this.inEditor = inEditor;
@@ -161,10 +178,10 @@ class Note extends FlxSprite
 			colorSwap = new ColorSwap();
 			shader = colorSwap.shader;
 
-			x += swagWidth * (noteData % 4);
+			x += swagWidth * (noteData % Note.ammo[mania]);
 			if(!isSustainNote) { //Doing this 'if' check to fix the warnings on Senpai songs
 				var animToPlay:String = '';
-				switch (noteData % 4)
+				switch (noteData % Note.ammo[mania])
 				{
 					case 0:
 						animToPlay = 'purple';
@@ -174,6 +191,8 @@ class Note extends FlxSprite
 						animToPlay = 'green';
 					case 3:
 						animToPlay = 'red';
+					case 4:
+						animToPlay = 'gold';
 				}
 				animation.play(animToPlay + 'Scroll');
 			}
@@ -200,6 +219,8 @@ class Note extends FlxSprite
 					animation.play('greenholdend');
 				case 3:
 					animation.play('redholdend');
+				case 4:
+					animation.play('redholdend');
 			}
 
 			updateHitbox();
@@ -220,6 +241,8 @@ class Note extends FlxSprite
 					case 2:
 						prevNote.animation.play('greenhold');
 					case 3:
+						prevNote.animation.play('redhold');
+					case 4:
 						prevNote.animation.play('redhold');
 				}
 
@@ -311,6 +334,7 @@ class Note extends FlxSprite
 		animation.addByPrefix('redScroll', 'red0');
 		animation.addByPrefix('blueScroll', 'blue0');
 		animation.addByPrefix('purpleScroll', 'purple0');
+		animation.addByPrefix('goldScroll', 'gold0');
 
 		if (isSustainNote)
 		{
@@ -318,11 +342,13 @@ class Note extends FlxSprite
 			animation.addByPrefix('greenholdend', 'green hold end');
 			animation.addByPrefix('redholdend', 'red hold end');
 			animation.addByPrefix('blueholdend', 'blue hold end');
+			animation.addByPrefix('goldholdend', 'red hold end');
 
 			animation.addByPrefix('purplehold', 'purple hold piece');
 			animation.addByPrefix('greenhold', 'green hold piece');
 			animation.addByPrefix('redhold', 'red hold piece');
 			animation.addByPrefix('bluehold', 'blue hold piece');
+			animation.addByPrefix('goldhold', 'red hold piece');
 		}
 
 		setGraphicSize(Std.int(width * 0.7));
