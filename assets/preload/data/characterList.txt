@@ -1,11 +1,14 @@
 bf
 bf-encore
+Encore-right
 bf-pixel-sonic
 bf-perspective-left
 bf-perspective-right
 gf
 gf-pixel-sonic
+GF_hedhehog
 sonicexe
+fakerEXE
 ycr
 ycr-mad
 pixelrunsonic
