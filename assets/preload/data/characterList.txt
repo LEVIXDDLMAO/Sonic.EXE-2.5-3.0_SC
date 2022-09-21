@@ -1,5 +1,9 @@
 bf
-gf
-bf-pixel
-bf-pixel-opponent
 bf-encore
+bf-pixel-sonic
+gf
+gf-pixel-sonic
+sonicexe
+ycr
+ycr-mad
+pixelrunsonic
