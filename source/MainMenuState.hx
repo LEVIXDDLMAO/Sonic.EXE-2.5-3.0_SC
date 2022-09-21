@@ -74,7 +74,7 @@ class MainMenuState extends MusicBeatState
 		animatedBG.frames = Paths.getSparrowAtlas(Paths.image('Main_Menu_Spritesheet_Animation'));
 		animatedBG.animation.addByPrefix('BG instance', 'Main_Menu_Spritesheet_Animation', 24, true);
 		animatedBG.scrollFactor.set(0, yScroll);
-		animatedBG.setGraphicSize(Std.int(bg.width * 1.175));
+		animatedBG.setGraphicSize(Std.int(animatedBG.width * 1.175));
 		animatedBG.updateHitbox();
 		animatedBG.screenCenter();
 		animatedBG.antialiasing = ClientPrefs.globalAntialiasing;
