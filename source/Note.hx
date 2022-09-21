@@ -156,10 +156,11 @@ class Note extends FlxSprite
 			mania = 4;
 		}
 
-		if (mania == 5)
+		// idk if this is needed or not
+		/*if (mania == 5)
 		{
 			swagWidth = 140 * 0.8;
-		}
+		}*/
 
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
