@@ -1,0 +1,111 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				360,
+				7
+			],
+			"anim": "scream",
+			"fps": 24,
+			"name": "scream",
+			"indices": []
+		},
+		{
+			"offsets": [
+				18,
+				-35
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "laugh",
+			"indices": [],
+			"name": "laugh"
+		},
+		{
+			"offsets": [
+				192,
+				32
+			],
+			"loop": false,
+			"fps": 38,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "mad_left"
+		},
+		{
+			"offsets": [
+				-61,
+				238
+			],
+			"loop": false,
+			"fps": 42,
+			"anim": "singUP",
+			"indices": [],
+			"name": "mad_up"
+		},
+		{
+			"offsets": [
+				-20,
+				-26
+			],
+			"loop": false,
+			"fps": 40,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "mad_down"
+		},
+		{
+			"offsets": [
+				-26,
+				0
+			],
+			"loop": false,
+			"fps": 35,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "mad_right"
+		},
+		{
+			"offsets": [
+				-18,
+				67
+			],
+			"loop": true,
+			"fps": 26,
+			"anim": "idle",
+			"indices": [],
+			"name": "mad_idle"
+		},
+		{
+			"offsets": [
+				170,
+				20
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "die",
+			"indices": [],
+			"name": "just_die"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/YCR_Mad",
+	"position": [
+		0,
+		380
+	],
+	"healthicon": "ycr-pissy",
+	"flip_x": false,
+	"healthbar_colors": [
+		22,
+		13,
+		135
+	],
+	"camera_position": [
+		-80,
+		90
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}
