@@ -71,19 +71,6 @@ class Note extends FlxSprite
 	public var hitCausesMiss:Bool = false;
 	public var distance:Float = 2000;//plan on doing scroll directions soon -bb
 
-	public static var defaultMania:Int = 4;
-
-	public var mania:Int = 4;
-
-	public static var ammo:Array<Int> = [4, 5]; // only adding 5k
-
-	public static var keysShit:Map<Int, Map<String, Dynamic>> = [
-		4 => ["anims" => ["LEFT", "DOWN", "UP", "RIGHT"], "strumAnims" => ["LEFT", "DOWN", "UP", "RIGHT"], "pixelAnimIndex" => [0, 1, 2, 3]],
-
-		5 => ["anims" => ["LEFT", "DOWN", "UP", "UP", "RIGHT"],
-			 "strumAnims" => ["LEFT", "DOWN", "SPACE", "UP", "RIGHT"], "pixelAnimIndex" => [0, 1, 4, 2, 3]],
-	];
-
 	private function set_texture(value:String):String {
 		if(texture != value) {
 			reloadNote('', value);
@@ -94,9 +81,9 @@ class Note extends FlxSprite
 
 	private function set_noteType(value:String):String {
 		noteSplashTexture = PlayState.SONG.splashSkin;
-		colorSwap.hue = ClientPrefs.arrowHSV[Std.int(Note.keysShit.get(mania).get('pixelAnimIndex')[noteData] % Note.ammo[mania])][0] / 360;
-		colorSwap.saturation = ClientPrefs.arrowHSV[Std.int(Note.keysShit.get(mania).get('pixelAnimIndex')[noteData] % Note.ammo[mania])][1] / 100;
-		colorSwap.brightness = ClientPrefs.arrowHSV[Std.int(Note.keysShit.get(mania).get('pixelAnimIndex')[noteData] % Note.ammo[mania])][2] / 100;
+		// colorSwap.hue = ClientPrefs.arrowHSV[noteData % 4][0] / 360;
+		// colorSwap.saturation = ClientPrefs.arrowHSV[noteData % 4][1] / 100;
+		// colorSwap.brightness = ClientPrefs.arrowHSV[noteData % 4][2] / 100;
 
 		if(noteData > -1 && noteType != value) {
 			switch(value) {
@@ -104,9 +91,9 @@ class Note extends FlxSprite
 					ignoreNote = mustPress;
 					reloadNote('HURT');
 					noteSplashTexture = 'HURTnoteSplashes';
-					colorSwap.hue = 0;
-					colorSwap.saturation = 0;
-					colorSwap.brightness = 0;
+					// colorSwap.hue = 0;
+					// colorSwap.saturation = 0;
+					// colorSwap.brightness = 0;
 					if(isSustainNote) {
 						missHealth = 0.1;
 					} else {
@@ -117,9 +104,9 @@ class Note extends FlxSprite
 					ignoreNote = false;
 					reloadNote('STATIC');
 					noteSplashDisabled = true;
-					colorSwap.hue = 0;
-					colorSwap.saturation = 0;
-					colorSwap.brightness = 0;
+					// colorSwap.hue = 0;
+					// colorSwap.saturation = 0;
+					// colorSwap.brightness = 0;
 					if (isSustainNote) {
 						missHealth = 0.1;
 					} else {
@@ -130,9 +117,9 @@ class Note extends FlxSprite
 					ignoreNote = mustPress;
 					reloadNote('PHANTOM');
 					noteSplashDisabled = true;
-					colorSwap.hue = 0;
-					colorSwap.saturation = 0;
-					colorSwap.brightness = 0;
+					// colorSwap.hue = 0;
+					// colorSwap.saturation = 0;
+					// colorSwap.brightness = 0;
 					if (isSustainNote) {
 						missHealth = 0.1;
 					} else {
@@ -144,9 +131,9 @@ class Note extends FlxSprite
 			}
 			noteType = value;
 		}
-		noteSplashHue = colorSwap.hue;
-		noteSplashSat = colorSwap.saturation;
-		noteSplashBrt = colorSwap.brightness;
+		// noteSplashHue = colorSwap.hue;
+		// noteSplashSat = colorSwap.saturation;
+		// noteSplashBrt = colorSwap.brightness;
 		return value;
 	}
 
@@ -163,11 +150,10 @@ class Note extends FlxSprite
 			mania = 4;
 		}
 
-		// idk if this is needed or not
-		/*if (mania == 5)
+		if (isRing)
 		{
 			swagWidth = 140 * 0.8;
-		}*/
+		}		
 
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
@@ -183,13 +169,13 @@ class Note extends FlxSprite
 
 		if(noteData > -1) {
 			texture = '';
-			colorSwap = new ColorSwap();
-			shader = colorSwap.shader;
+			// colorSwap = new ColorSwap();
+			// shader = colorSwap.shader;
 
-			x += swagWidth * (noteData % Note.ammo[mania]);
+			x += swagWidth * (noteData % 5);
 			if(!isSustainNote) { //Doing this 'if' check to fix the warnings on Senpai songs
 				var animToPlay:String = '';
-				switch (noteData % Note.ammo[mania])
+				switch (noteData % 5)
 				{
 					case 0:
 						animToPlay = 'purple';
