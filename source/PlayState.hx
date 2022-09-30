@@ -266,6 +266,29 @@ class PlayState extends MusicBeatState
 
 	var heatlhDrop:Float = 0;
 
+	public var sonicHUDSongs:Array<String> = [
+		"my-horizon",
+		"our-horizon",
+		"prey",
+		"you-cant-run", // for the pixel part in specific
+		"fatality",
+		"b4cksl4sh",
+	];
+
+	var hudStyle:String = 'sonic2';
+	public var sonicHUDStyles:Map<String, String> = [
+
+		"fatality" => "sonic3",
+		"prey" => "soniccd",
+		"you-cant-run" => "sonic1", // because its green hill zone so it should be sonic1
+		"our-horizon" => "chaotix",
+		"my-horizon" => "chaotix"
+		// "songName" => "styleName",
+
+		// styles are sonic2 and sonic3
+		// defaults to sonic2 if its in sonicHUDSongs but not in here
+	];
+
 	override public function create()
 	{
 		#if MODS_ALLOWED
@@ -671,6 +694,48 @@ class PlayState extends MusicBeatState
 					bg.antialiasing = false;
 					add(bg);
 				}
+
+			case 'starved-pixel':
+				defaultCamZoom = 0.6;
+				isPixelStage = true;
+				GameOverSubstate.characterName = 'bf-sonic-gameover';
+				GameOverSubstate.deathSoundName = 'prey-death';
+				GameOverSubstate.loopSoundName = 'prey-loop';
+				GameOverSubstate.endSoundName = 'prey-retry';
+
+
+				stardustBgPixel = new FlxTiledSprite(Paths.image('starved/stardustBg'), 4608, 2832, true, true);
+				stardustBgPixel.scrollFactor.set(0.4, 0.4);
+				/*stardustBgPixel.scale.x = 5;
+				stardustBgPixel.scale.y = 5;*/
+				//stardustBgPixel.y += 600;
+				//stardustBgPixel.x += 1000;
+				//stardustBgPixel.velocity.set(-2000, 0);
+
+				stardustFloorPixel = new FlxTiledSprite(Paths.image('starved/stardustFloor'), 4608, 2832, true, true);
+				//stardustFloorPixel.setGraphicSize(Std.int(pizzaHutStage.width * 1.5));
+
+				stardustBgPixel.visible = false;
+				stardustFloorPixel.visible = false;
+
+				stardustFurnace = new FlxSprite(-500, 1450);
+				stardustFurnace.frames = Paths.getSparrowAtlas('starved/Furnace_sheet');
+				stardustFurnace.animation.addByPrefix('idle', 'Furnace idle', 24, true);
+				stardustFurnace.animation.play('idle');
+				stardustFurnace.scale.x = 6;
+				stardustFurnace.scale.y = 6;
+				stardustFurnace.antialiasing = false;
+
+				/*stardustFloorPixel.scale.x = 6;
+				stardustFloorPixel.scale.y = 6;*/
+				//stardustFloorPixel.y += 600;
+				//stardustFloorPixel.x += 1000;
+				//stardustFloorPixel.velocity.set(-2500, 0);
+				stardustBgPixel.screenCenter();
+				stardustFloorPixel.screenCenter();
+
+				add(stardustBgPixel);
+				add(stardustFurnace);
 		}
 
 		if(isPixelStage) {
@@ -1019,6 +1084,185 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
 		}
+
+		if(sonicHUDStyles.exists(SONG.song.toLowerCase()))hudStyle = sonicHUDStyles.get(SONG.song.toLowerCase());
+		var hudFolder = hudStyle;
+		if(hudStyle == 'soniccd')hudFolder = 'sonic1';
+		var scoreLabel:FlxSprite = new FlxSprite(15, 25).loadGraphic(Paths.image("sonicUI/" + hudFolder + "/score"));
+		scoreLabel.setGraphicSize(Std.int(scoreLabel.width * 3));
+		scoreLabel.updateHitbox();
+		scoreLabel.x = 15;
+		scoreLabel.antialiasing = false;
+		scoreLabel.scrollFactor.set();
+		sonicHUD.add(scoreLabel);
+
+		var timeLabel:FlxSprite = new FlxSprite(15, 70).loadGraphic(Paths.image("sonicUI/" + hudFolder + "/time"));
+		timeLabel.setGraphicSize(Std.int(timeLabel.width * 3));
+		timeLabel.updateHitbox();
+		timeLabel.x = 15;
+		timeLabel.antialiasing = false;
+		timeLabel.scrollFactor.set();
+		sonicHUD.add(timeLabel);
+
+		var ringsLabel:FlxSprite = new FlxSprite(15, 115).loadGraphic(Paths.image("sonicUI/" + hudFolder + "/rings"));
+		ringsLabel.setGraphicSize(Std.int(ringsLabel.width * 3));
+		ringsLabel.updateHitbox();
+		ringsLabel.x = 15;
+		ringsLabel.antialiasing = false;
+		ringsLabel.scrollFactor.set();
+		if (SONG.isRing)sonicHUD.add(ringsLabel);
+
+		var missLabel:FlxSprite = new FlxSprite(15, 160).loadGraphic(Paths.image("sonicUI/" + hudFolder + "/misses"));
+		missLabel.setGraphicSize(Std.int(missLabel.width * 3));
+		if(!SONG.isRing)missLabel.y = ringsLabel.y;
+		missLabel.updateHitbox();
+		missLabel.x = 15;
+		missLabel.antialiasing = false;
+		missLabel.scrollFactor.set();
+		sonicHUD.add(missLabel);
+
+		// score numbers
+		if(hudFolder=='sonic3'){
+			for(i in 0...7){
+				var number = new SonicNumber(0, 0, 0);
+				number.folder = hudFolder;
+				number.setGraphicSize(Std.int(number.width*3));
+				number.updateHitbox();
+				number.x = scoreLabel.x + scoreLabel.width + ((9 * i) * 3);
+				number.y = scoreLabel.y;
+				scoreNumbers.push(number);
+				sonicHUD.add(number);
+			}
+		}else{
+			for(i in 0...7){
+				var number = new SonicNumber(0, 0, 0);
+				number.folder = hudFolder;
+				number.setGraphicSize(Std.int(number.width*3));
+				number.updateHitbox();
+				number.x = scoreLabel.x + scoreLabel.width + ((9 * i) * 3);
+				number.y = scoreLabel.y;
+				scoreNumbers.push(number);
+				sonicHUD.add(number);
+			}
+		}
+
+		// ring numbers
+		for(i in 0...3){
+			var number = new SonicNumber(0, 0, 0);
+			number.folder = hudFolder;
+			number.setGraphicSize(Std.int(number.width*3));
+			number.updateHitbox();
+			number.x = ringsLabel.x + ringsLabel.width + (6*3) + ((9 * i) * 3);
+			number.y = ringsLabel.y;
+			ringsNumbers.push(number);
+			if (SONG.isRing)sonicHUD.add(number);
+		}
+
+		// miss numbers
+		for(i in 0...4){
+			var number = new SonicNumber(0, 0, 0);
+			number.folder = hudFolder;
+			number.setGraphicSize(Std.int(number.width*3));
+			number.updateHitbox();
+			number.x = missLabel.x + missLabel.width + (6*3) + ((9 * i) * 3);
+			number.y = missLabel.y;
+			missNumbers.push(number);
+			sonicHUD.add(number);
+		}
+
+
+		// time numbers
+		minNumber = new SonicNumber(0, 0, 0);
+		minNumber.folder = hudFolder;
+		minNumber.setGraphicSize(Std.int(minNumber.width*3));
+		minNumber.updateHitbox();
+		minNumber.x = timeLabel.x + timeLabel.width;
+		minNumber.y = timeLabel.y;
+		sonicHUD.add(minNumber);
+
+		var timeColon:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image("sonicUI/" + hudFolder + "/colon"));
+		timeColon.setGraphicSize(Std.int(timeColon.width * 3));
+		timeColon.updateHitbox();
+		timeColon.x = 170;
+		timeColon.y = timeLabel.y;
+		timeColon.antialiasing = false;
+		timeColon.scrollFactor.set();
+		sonicHUD.add(timeColon);
+
+		secondNumberA = new SonicNumber(0, 0, 0);
+		secondNumberA.folder = hudFolder;
+		secondNumberA.setGraphicSize(Std.int(secondNumberA.width*3));
+		secondNumberA.updateHitbox();
+		secondNumberA.x = 186;
+		secondNumberA.y = timeLabel.y;
+		sonicHUD.add(secondNumberA);
+
+		secondNumberB = new SonicNumber(0, 0, 0);
+		secondNumberB.folder = hudFolder;
+		secondNumberB.setGraphicSize(Std.int(secondNumberB.width*3));
+		secondNumberB.updateHitbox();
+		secondNumberB.x = 213;
+		secondNumberB.y = timeLabel.y;
+		sonicHUD.add(secondNumberB);
+
+		var timeQuote:FlxSprite = new FlxSprite(0, 0);
+		if(hudFolder=='chaotix'){
+			timeQuote.loadGraphic(Paths.image("sonicUI/" + hudFolder + "/quote"));
+			timeQuote.setGraphicSize(Std.int(timeQuote.width * 3));
+			timeQuote.updateHitbox();
+			timeQuote.x = secondNumberB.x + secondNumberB.width;
+			timeQuote.y = timeLabel.y;
+			timeQuote.antialiasing = false;
+			timeQuote.scrollFactor.set();
+			sonicHUD.add(timeQuote);
+
+			millisecondNumberA = new SonicNumber(0, 0, 0);
+			millisecondNumberA.folder = hudFolder;
+			millisecondNumberA.setGraphicSize(Std.int(millisecondNumberA.width*3));
+			millisecondNumberA.updateHitbox();
+			millisecondNumberA.x = timeQuote.x + timeQuote.width + (2*3);
+			millisecondNumberA.y = timeLabel.y;
+			sonicHUD.add(millisecondNumberA);
+
+			millisecondNumberB = new SonicNumber(0, 0, 0);
+			millisecondNumberB.folder = hudFolder;
+			millisecondNumberB.setGraphicSize(Std.int(millisecondNumberB.width*3));
+			millisecondNumberB.updateHitbox();
+			millisecondNumberB.x = millisecondNumberA.x + millisecondNumberA.width + 3;
+			millisecondNumberB.y = timeLabel.y;
+			sonicHUD.add(millisecondNumberB);
+		}
+
+		switch(hudFolder){
+			case 'chaotix':
+				minNumber.x = timeLabel.x + timeLabel.width + (4*3);
+				timeColon.x = minNumber.x + minNumber.width + (2*3);
+				secondNumberA.x = timeColon.x + timeColon.width + (4*3);
+				secondNumberB.x = secondNumberA.x + secondNumberA.width + 3;
+				timeQuote.x = secondNumberB.x + secondNumberB.width;
+				millisecondNumberA.x = timeQuote.x + timeQuote.width + (2*3);
+				millisecondNumberB.x = millisecondNumberA.x + millisecondNumberA.width + 3;
+			default:
+
+		}
+
+		if(!ClientPrefs.downScroll){
+			for(member in sonicHUD.members){
+				member.y = FlxG.height-member.height-member.y;
+			}
+		}
+
+		if(sonicHUDSongs.contains(SONG.song.toLowerCase())){
+			scoreTxt.visible=false;
+			timeBar.visible=false;
+			timeTxt.visible=false;
+			timeBarBG.visible=false;
+			add(sonicHUD);
+		}
+
+		updateSonicScore();
+		updateSonicMisses();
+		if(SONG.isRing)updateSonicRings();
 
 		strumLineNotes.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
