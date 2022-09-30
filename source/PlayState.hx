@@ -262,9 +262,25 @@ class PlayState extends MusicBeatState
 	// Less laggy controls
 	private var keysArray:Array<Dynamic>;
 
+	// starved shit
+	var stardustBgPixel:FlxTiledSprite;
+	var stardustFloorPixel:FlxTiledSprite;
+	var stardustFurnace:FlxSprite;
+	var hungryManJackTime:Int = 0;
+
 	var daNoteStatic:FlxSprite = new FlxSprite(0, 0);
 
 	var heatlhDrop:Float = 0;
+
+	public var ringsNumbers:Array<SonicNumber>=[];
+	public var minNumber:SonicNumber;
+	public var sonicHUD:FlxSpriteGroup;
+	public var scoreNumbers:Array<SonicNumber>=[];
+	public var missNumbers:Array<SonicNumber>=[];
+	public var secondNumberA:SonicNumber;
+	public var secondNumberB:SonicNumber;
+	public var millisecondNumberA:SonicNumber;
+	public var millisecondNumberB:SonicNumber;
 
 	public var sonicHUDSongs:Array<String> = [
 		"my-horizon",
