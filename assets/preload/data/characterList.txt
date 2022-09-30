@@ -4,6 +4,9 @@ Encore-right
 bf-pixel-sonic
 bf-perspective-left
 bf-perspective-right
+bf-running-sonic
+bf-sonic-gameover
+bf-Sonic-Peelout
 gf
 gf-pixel-sonic
 GF_hedhehog
@@ -15,5 +18,7 @@ pixelrunsonic
 BEAST-RIGHT
 BEAST
 eggdick
+starved-pixel
 knux
 tails
+Furnace
