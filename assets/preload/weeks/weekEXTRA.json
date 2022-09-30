@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["Prey", "Furance", [165, 0, 77]]
+	],
+
+	"weekCharacters": [
+		"",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+
+	"storyName": "Extra",
+	"weekBefore": "weekEXE",
+	"weekName": "Extra",
+	"startUnlocked": false,
+
+	"hideStoryMode": true,
+	"hideFreeplay": false
+}
