@@ -3513,6 +3513,88 @@ class PlayState extends MusicBeatState
 		eventNotes = [];
 	}
 
+	public var ratingIndexArray:Array<String> = ["sick", "good", "bad", "shit"];
+	public var returnArray:Array<String> = [" [SFC]", " [GFC]", " [FC]", ""];
+	public var smallestRating:String;
+
+	function updateSonicScore(){
+		var seperatedScore:Array<String> = Std.string(songScore).split("");
+		if(seperatedScore.length<scoreNumbers.length){
+			for(idx in seperatedScore.length...scoreNumbers.length){
+				if(hudStyle == 'chaotix' || hudStyle == 'sonic3' || hudStyle == 'soniccd'){
+					seperatedScore.unshift('');
+				}else{
+					seperatedScore.unshift('0');
+				}
+			}
+		}
+		if(seperatedScore.length>scoreNumbers.length)
+			seperatedScore.resize(scoreNumbers.length);
+
+		for(idx in 0...seperatedScore.length){
+			if(seperatedScore[idx]!='' || idx==scoreNumbers.length-1){
+				var val = Std.parseInt(seperatedScore[idx]);
+				if(Math.isNaN(val))val=0;
+				scoreNumbers[idx].number = val;
+				scoreNumbers[idx].visible=true;
+			}else
+				scoreNumbers[idx].visible=false;
+
+		}
+	}
+
+	function updateSonicMisses(){
+		var seperatedScore:Array<String> = Std.string(songMisses).split("");
+		if(seperatedScore.length<missNumbers.length){
+			for(idx in seperatedScore.length...missNumbers.length){
+				if(hudStyle == 'chaotix' || hudStyle == 'sonic3' || hudStyle == 'soniccd'){
+					seperatedScore.unshift('');
+				}else{
+					seperatedScore.unshift('0');
+				}
+			}
+		}
+		if(seperatedScore.length>missNumbers.length)
+			seperatedScore.resize(missNumbers.length);
+
+		for(idx in 0...seperatedScore.length){
+			if(seperatedScore[idx]!='' || idx==missNumbers.length-1){
+				var val = Std.parseInt(seperatedScore[idx]);
+				if(Math.isNaN(val))val=0;
+				missNumbers[idx].number = val;
+				missNumbers[idx].visible=true;
+			}else
+				missNumbers[idx].visible=false;
+
+		}
+	}
+
+	function updateSonicRings(){
+		var seperatedScore:Array<String> = Std.string(cNum).split("");
+		if(seperatedScore.length<ringsNumbers.length){
+			for(idx in seperatedScore.length...ringsNumbers.length){
+				if(hudStyle == 'chaotix' || hudStyle == 'sonic3' || hudStyle == 'soniccd'){
+					seperatedScore.unshift('');
+				}else{
+					seperatedScore.unshift('0');
+				}
+			}
+		}
+		if(seperatedScore.length>ringsNumbers.length)
+			seperatedScore.resize(ringsNumbers.length);
+
+		for(idx in 0...seperatedScore.length){
+			if(seperatedScore[idx]!='' || idx==ringsNumbers.length-1){
+				var val = Std.parseInt(seperatedScore[idx]);
+				if(Math.isNaN(val))val=0;
+				ringsNumbers[idx].number = val;
+				ringsNumbers[idx].visible=true;
+			}else
+				ringsNumbers[idx].visible=false;
+
+		}
+	}
+
 	public var totalPlayed:Int = 0;
 	public var totalNotesHit:Float = 0.0;
 	private function popUpScore(note:Note = null):Void
