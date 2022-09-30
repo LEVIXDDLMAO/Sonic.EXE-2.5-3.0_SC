@@ -306,6 +306,8 @@ class PlayState extends MusicBeatState
 		// defaults to sonic2 if its in sonicHUDSongs but not in here
 	];
 
+	var cNum:Int = 0;
+
 	override public function create()
 	{
 		#if MODS_ALLOWED
