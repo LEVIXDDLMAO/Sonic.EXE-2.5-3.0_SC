@@ -51,6 +51,7 @@ import Achievements;
 import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
+import flixel.addons.display.FlxTiledSprite;
 
 #if sys
 import sys.FileSystem;
